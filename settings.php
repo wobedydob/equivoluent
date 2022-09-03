@@ -1,6 +1,6 @@
 <?php
 
-//region CONFIG
+//region Config
 if (!file_exists(__DIR__ . '/config.php')) {
     echo '<h1> Config file not found!</h1>';
     exit();
@@ -9,11 +9,17 @@ require __DIR__ . '/config.php';
 
 define('SITE_URL', $site_url);
 
-//region DATABASE
+//region Database
 define('DB_HOST', $db_host);
 define('DB_NAME', $db_name);
 define('DB_USERNAME', $db_user);
 define('DB_PASSWORD', $db_password);
+
+// default port
+define('DB_PORT', 3306);
+
+// default charset
+define('DB_CHAR', 'utf8');
 //endregion
 
 //region ERRORS AFTER SETUP

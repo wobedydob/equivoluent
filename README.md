@@ -15,9 +15,29 @@ The goal of "Equivolent" is to act as its own abstract query builder.
 ## 📝 Usage
 You are free to use this project in any way, shape or form with given credit to the author
 
+<br>
+
+**Step 1:** Clone this project: 
 ```
 git clone https://github.com/wobedydob/equivoluent
 ```
+<br>
+
+**Step 2:** Rename config-sample.php to config.php and enter your information:
+```
+// site
+$site_url = ''; // Url of your site (example.local)
+$display_errors = false; // To display errors set to TRUE
+
+// mysql
+$db_host = 'localhost'; // Default is localhost update if necessary
+$db_name = ''; // Name of your database
+$db_user = ''; // Username of database user
+$db_password = ''; //Password of database user
+```
+<br>
+
+**Step 3:** Go bonkers! 🤪
 
 ## ✌ Credits
 

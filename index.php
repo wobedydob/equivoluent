@@ -1,3 +1,3 @@
 <?php
 
-// silence of the lambs.
+require 'includes.php';

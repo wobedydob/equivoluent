@@ -12,7 +12,7 @@ class Model
     private array $values = [];
 
     /** Initializes new Module/Model() instance and validates given Model type. */
-    private static function init(): Model
+    private static function init(?string $queryType = null): Model
     {
 
         // initialize Mappers
@@ -24,7 +24,14 @@ class Model
 
         // initialize new Model and map child to $model
         $module = new self;
-        $module->query = $queryMapper->validateQueryType($model::QUERY_TYPE) . ' ' . $model::TABLE_NAME;
+
+        // determine query type
+        $type = $model::QUERY_TYPE;
+        if ($queryType) {
+            $type = $queryType;
+        }
+
+        $module->query = $queryMapper->validateQueryType($type) . ' ' . $model::TABLE_NAME;
 
         return $module;
 

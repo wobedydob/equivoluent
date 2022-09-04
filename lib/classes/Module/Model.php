@@ -3,7 +3,6 @@
 namespace Module;
 
 use Builder\QueryCondition;
-use Module\ModelMapper;
 
 class Model
 {

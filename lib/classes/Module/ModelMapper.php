@@ -14,7 +14,7 @@ class ModelMapper
             'Model\User' => new User(),
             default => throw new \Exception('Invalid Model given:' . $model),
         };
-        
+
     }
 
 }

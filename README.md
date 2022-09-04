@@ -5,7 +5,7 @@ Equivoluent is based on Laravel's Eloquent.
 The goal of "Equivolent" is to act as its own abstract query builder.
 
 ## 📦 Versions
-[![self](https://img.shields.io/badge/current_build-0.0.1-6BA4AE?style=for-the-badge&logo=github&logoColor=white)](https://php.com/)
+[![self](https://img.shields.io/badge/current_build-0.0.1-6BA4AE?style=for-the-badge&logo=github&logoColor=white)](https://github.com/wobedydob/equivoluent)
 
 [![php](https://img.shields.io/badge/php-8.1.9-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.com/)
 [![mysql](https://img.shields.io/badge/mysql-8.0.30-3E6E93?style=for-the-badge&logo=mysql&logoColor=white)](https://mysql.com/)

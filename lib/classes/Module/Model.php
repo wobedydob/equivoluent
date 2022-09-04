@@ -37,6 +37,8 @@ class Model
 
     }
 
+    // region SELECT
+
     /** Executes a blank query based on called Model query. */
     public static function all(): bool|array
     {
@@ -111,5 +113,61 @@ class Model
         return Database::getInstance()->bindAndExecute($this->query, $this->values)->fetch(\PDO::FETCH_ASSOC);
 
     }
+
+    // endregion
+
+    // region INSERT
+
+    /** Executes an INSERT query. */
+    protected static function add(array $data): bool
+    {
+
+        $module = self::init('insert');
+
+        $insert = $module->query . '(';
+        $values = ' VALUES(';
+
+        $pdoValues = [];
+
+        $count = 0;
+
+        foreach ($data as $key => $value) {
+
+            $pdoKey = ':' . $key . $count;
+
+            $insert .= $key;
+            $values .= $pdoKey;
+
+            $pdoValues[$pdoKey] = $value;
+
+            if ($key === array_key_last($data)) {
+                continue;
+            }
+
+            $insert .= ', ';
+            $values .= ', ';
+
+            $count++;
+
+        }
+
+        $insert .= ')';
+        $values .= ')';
+
+        $query = $insert . $values . ';';
+
+        try {
+            Database::getInstance()->bindAndExecute($query, $pdoValues);
+            return true;
+        } catch (\PDOException $exception) {
+
+            // TODO: implement ERROR/EXCEPTION handler.
+
+            return false;
+        }
+
+    }
+
+    // endregion
 
 }

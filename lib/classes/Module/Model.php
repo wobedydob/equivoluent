@@ -37,7 +37,7 @@ class Model
         // initialize
         $module = self::init();
 
-        return Database::getInstance()->bindAndExecute($module->query)->fetchAll();
+        return Database::getInstance()->bindAndExecute($module->query . ';')->fetchAll();
 
     }
 

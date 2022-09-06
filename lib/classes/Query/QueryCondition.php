@@ -1,6 +1,6 @@
 <?php
 
-namespace Builder;
+namespace Query;
 
 class QueryCondition
 {
@@ -17,8 +17,6 @@ class QueryCondition
 
         foreach ($conditions as $key => $condition) if ($condition == 'WHERE' || $condition === 'AND' || $condition === 'OR') {
 
-            // retrieves AND indexes
-
             // maps ID for query
             $id = $conditions[$key + 1][0];
 
@@ -29,7 +27,8 @@ class QueryCondition
             $values[$placeholder] = $conditions[$key + 1][1];
 
             // adds condition to PDO query
-            $query .= ' ' . $condition . ' ' . '`' . $id . '`' . ' = ' . $placeholder;
+            $query .= ' ' . $condition . ' ' . $id . ' = ' . $placeholder;
+
         }
 
         // maps query

@@ -16,33 +16,43 @@ class Query
     private const DELETE = 'DELETE FROM';
 
     /** Returns Query\QuerySelect and handles MySQL SELECT statement */
-    public static function select(string $table, string $columns = '*'): QuerySelect
+    public static function select(string $table, string $columns = '*'): bool|QuerySelect
     {
-        // TODO: table & column validation
-        return new QuerySelect(self::SELECT . ' ' . $columns . ' FROM ' . $table);
+        return self::validate($table) ? new QuerySelect(self::SELECT . ' ' . $columns . ' FROM ' . $table) : false;
     }
 
     /** Returns Query\QueryInsert and handles MySQL INSERT statement */
-    public static function insert(string $table): QueryInsert
+    public static function insert(string $table): bool|QueryInsert
     {
-        // TODO: table & column validation
         // TODO: row & value validation
-        return new QueryInsert(self::INSERT . ' ' . $table);
+        return self::validate($table) ? new QueryInsert(self::INSERT . ' ' . $table) : false;
     }
 
     /** Returns Query\QueryUpdate and handles MySQL UPDATE statement */
-    public static function update(string $table): QueryUpdate
+    public static function update(string $table): bool|QueryUpdate
     {
-        // TODO: table & column validation
-        return new QueryUpdate(self::UPDATE . ' ' . $table);
+        return self::validate($table) ? new QueryUpdate(self::UPDATE . ' ' . $table) : false;
     }
 
-    // TODO: implement sql DELETE functionality
     /** Returns Query\QueryDelete and handles MySQL DELETE statement */
-    public static function delete(string $table): QueryDelete
+    public static function delete(string $table): bool|QueryDelete
     {
         // TODO: record validation
-        return new QueryDelete(self::DELETE . ' ' . $table);
+        return self::validate($table) ? new QueryDelete(self::DELETE . ' ' . $table) : false;
+    }
+
+    // TODO: implement row & column validation
+
+    /** Validates the table */
+    private static function validate(string $table): bool
+    {
+
+        if (!Database::getInstance()->tableExists($table)) {
+            throw new \Exception('Unexpected given table: "' . $table . '"');
+        }
+
+        return true;
+
     }
 
 }

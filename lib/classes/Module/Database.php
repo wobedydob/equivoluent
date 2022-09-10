@@ -57,4 +57,28 @@ class Database
 
     }
 
+    /** Validates the given query */
+    // TODO: Make this public and use it with the Query\TYPES
+    private function validateQuery(string $query): bool|PDOStatement
+    {
+
+        try {
+            $result = $this->pdo->query($query);
+        } catch (\PDOException $exception) {
+            return false;
+        }
+
+        return $result;
+
+    }
+
+    /** Check if the given table exists in the database. */
+    public function tableExists(string $table): bool
+    {
+        $query = 'SELECT 1 FROM ' . $table . ' LIMIT 1;';
+        return (bool)$this->validateQuery($query);
+    }
+
+    // TODO: implement validations for rows & columns
+
 }

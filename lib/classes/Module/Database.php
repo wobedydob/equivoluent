@@ -58,17 +58,22 @@ class Database
     }
 
     /** Validates the given query */
-    // TODO: Make this public and use it with the Query\TYPES
-    private function validateQuery(string $query): bool|PDOStatement
+    public function validateQuery(string $query, bool $exception_message = false): bool
     {
 
         try {
-            $result = $this->pdo->query($query);
+            $query = $this->pdo->query($query);
         } catch (\PDOException $exception) {
+
+            if($exception_message) {
+                throw new \PDOException($exception);
+            }
+
             return false;
+
         }
 
-        return $result;
+        return (bool)$query;
 
     }
 

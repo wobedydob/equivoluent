@@ -2,6 +2,7 @@
 
 namespace Module;
 
+use Exceptions\InvalidTableException;
 use PDO;
 use PDOStatement;
 
@@ -81,7 +82,12 @@ class Database
     public function tableExists(string $table): bool
     {
         $query = 'SELECT 1 FROM ' . $table . ' LIMIT 1;';
-        return (bool)$this->validateQuery($query);
+
+        if (!$this->validateQuery($query)) {
+            throw new InvalidTableException($table);
+        }
+
+        return true;
     }
 
     // TODO: implement validations for rows & columns

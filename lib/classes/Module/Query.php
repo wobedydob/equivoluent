@@ -16,42 +16,38 @@ class Query
     private const DELETE = 'DELETE FROM';
 
     /** Returns Query\QuerySelect and handles MySQL SELECT statement */
-    public static function select(string $table, string $columns = '*'): bool|QuerySelect
+    public static function select(string $table): bool|QuerySelect
     {
-        return self::validate($table) ? new QuerySelect(self::SELECT . ' ' . $columns . ' FROM ' . $table) : false;
+        self::validateTable($table);
+        return new QuerySelect(self::SELECT . ' *  FROM ' . $table);
     }
 
     /** Returns Query\QueryInsert and handles MySQL INSERT statement */
     public static function insert(string $table): bool|QueryInsert
     {
-        // TODO: row & value validation
-        return self::validate($table) ? new QueryInsert(self::INSERT . ' ' . $table) : false;
+        self::validateTable($table);
+        return new QueryInsert(self::INSERT . ' ' . $table);
     }
 
     /** Returns Query\QueryUpdate and handles MySQL UPDATE statement */
     public static function update(string $table): bool|QueryUpdate
     {
-        return self::validate($table) ? new QueryUpdate(self::UPDATE . ' ' . $table) : false;
+        self::validateTable($table);
+        return new QueryUpdate(self::UPDATE . ' ' . $table);
     }
 
     /** Returns Query\QueryDelete and handles MySQL DELETE statement */
     public static function delete(string $table): bool|QueryDelete
     {
-        // TODO: record validation
-        return self::validate($table) ? new QueryDelete(self::DELETE . ' ' . $table) : false;
+        self::validateTable($table);
+        return new QueryDelete(self::DELETE . ' ' . $table);
     }
 
-    // TODO: implement row & column validation
-
     /** Validates the table */
-    private static function validate(string $table): bool
+    private static function validateTable(string $table): void
     {
-
-        if (!Database::getInstance()->tableExists($table)) {
-            throw new \Exception('Unexpected given table: "' . $table . '"');
-        }
-
-        return true;
+        // Throws an InvalidTableException when table cannot be found.
+        Database::getInstance()->tableExists($table);
 
     }
 

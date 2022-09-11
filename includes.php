@@ -1,4 +1,4 @@
 <?php
 
 require 'settings.php';
-require 'lib/functions.php';
+require 'lib/bootstrap.php';

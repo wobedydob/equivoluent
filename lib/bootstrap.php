@@ -1,6 +1,7 @@
 <?php
 
 include 'functions.php';
+include 'validation.php';
 
 function getUserMapper(): \Mapper\UserMapper
 {

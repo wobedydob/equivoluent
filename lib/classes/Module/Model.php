@@ -2,6 +2,7 @@
 
 namespace Module;
 
+use Exceptions\UnexpectedModelException;
 use Model\User;
 
 class Model
@@ -21,7 +22,7 @@ class Model
                 // TODO: find better alternative for this error if necessary.
                 throw new \Exception('Cannot use Model class without a child object');
             default:
-                throw new \Exception('Unexpected Model "' . $child . '"');
+                throw new UnexpectedModelException($child);
         }
 
         self::$table = $model::TABLE_NAME;

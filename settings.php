@@ -1,5 +1,13 @@
 <?php
 
+if(PHP_VERSION < '8.0'){
+    $error = new \Error('Equivoluent does not support PHP version: ' . PHP_VERSION);
+    echo '<h1>' . $error->getMessage() . '</h1>';
+    echo '<strong>' . $error->getFile() . '</strong> on line: ' . $error->getLine();
+    exit();
+}
+
+
 //region Config
 if (!file_exists(__DIR__ . '/config.php')) {
     echo '<h1> Config file not found!</h1>';

@@ -1,10 +1,10 @@
 <?php
 
-namespace Model;
+namespace Module;
 
-use Module\Query;
+use Model\User;
 
-abstract class Model
+class Model
 {
 
     private static string $table;
@@ -29,10 +29,10 @@ abstract class Model
     }
 
     /** Allows SELECT queries for User */
-    public static function get(string $columns = '*'): \Query\QuerySelect
+    public static function get(): \Query\QuerySelect
     {
         self::init();
-        return Query::select(self::$table, $columns);
+        return Query::select(self::$table);
     }
 
     /** Allows INSERT queries for User */

@@ -16,10 +16,6 @@ The goal of "Equivolent" is to act as its own abstract query builder.
 You are free to use this project in any way, shape or form with given credit to the author. 
 You can find documentation in this Repository's Wiki tab or [right here](https://github.com/wobedydob/equivoluent/wiki).
 
-<br>
-
-**Step 3:** Go bonkers! 🤪
-
 ## ✌ Credits
 
 - Author: [@wobedydob](https://www.github.com/wobedydob) / [@wjelsma](https://www.github.com/wjelsma)
